@@ -1,5 +1,5 @@
 {
-  "name": "Google Maps Customize",
+  "name": "Show/Hide Google Maps Containers",
   "version": "1.0",
   "description": "Show/Hide all additional containers in Google Maps",
   "permissions": ["activeTab", "declarativeContent", "storage"],
