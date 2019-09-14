@@ -1,0 +1,24 @@
+body {	
+	background-color: whitesmoke !important;
+}
+
+#buttons {
+	margin: 10px 0;
+}
+
+#buttons > * {
+	margin-bottom: 5px;
+}
+
+#remove-containers {
+	margin-bottom: 0 !important;
+}
+
+hr {
+	margin: 5px 0 !important;
+	border-top: 2px dashed #8c8b8b;
+}
+
+button {
+	width: 180px;
+}
