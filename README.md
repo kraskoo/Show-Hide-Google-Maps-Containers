@@ -6,11 +6,9 @@ Extension provide simple functionalities
 * Hide containers - Hide all additionally windows on the map
 
 ## Installation
-
-	* Open chrome://extensions in your Chrome
-	* Enable Developer mode
-	* Load unpacked (the directory of extension)
-	* Disable Developer mode
+Open [Google Chrome Extensions](https://chrome.google.com/webstore/detail/showhide-google-maps-cont/jbhobgelhikphpgncpefcgaiejemimhh)  
+Click on Add button  
+Accept
 	
 
 **  **
