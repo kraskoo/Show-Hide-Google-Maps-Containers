@@ -1,5 +1,5 @@
 (function () {
-	var coords = location.pathname.match(/\/@-?\d{1,3}\.\d+?,-?\d{1,3}\.\d+?,\d+?z\/?/g);
+	var coords = location.pathname.match(/\/@-?\d{1,3}\.\d+?,-?\d{1,3}\.\d+?,\d\.?\d*?z\/?/g);
 	if (coords !== null) {
 		coords = coords[0].replace('@', '')
 				.replace('z', '')
