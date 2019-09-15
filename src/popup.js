@@ -12,11 +12,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 				} else if (id === 'show-containers') {
 					showAndRemoveContainer(tab, 'block');
 				} else if (id === 'get-coordinates') {
-					let pattern = /\/@-?\d{1,3}\.\d+?,-?\d{1,3}\.\d+?,\d+?z\//g;
-					let slashPattern = /\//g;
-					chrome.tabs.executeScript(
-						tab.id,
-						{ file: './coords.js' });
+					chrome.tabs.executeScript(tab.id, { file: './coords.js' });
 				}
 			});
 		});
