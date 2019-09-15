@@ -12,10 +12,11 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 				} else if (id === 'show-containers') {
 					showAndRemoveContainer(tab, 'block');
 				} else if (id === 'get-coordinates') {
-					let pattern = /@\d{1,2}\.\d*,\d{1,2}\.\d*/gm;
+					let pattern = /\/@-?\d{1,3}\.\d+?,-?\d{1,3}\.\d+?,\d+?z\//g;
+					let slashPattern = /\//g;
 					chrome.tabs.executeScript(
 						tab.id,
-						{ code: `var coords = location.pathname.match(${pattern}); if (coords !== null) { coords = coords[0].split(','); var lat = coords[0].replace('@', ''); var long = coords[1]; alert('Latitude = ' + lat + '\\n' + 'Longitude = ' + long); } else alert('By some reason cannot get coordinates, sorry');` });
+						{ file: './coords.js' });
 				}
 			});
 		});
