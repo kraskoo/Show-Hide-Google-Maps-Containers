@@ -8,9 +8,9 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 				let currentButton = ev.target;
 				let id = currentButton.getAttribute('id');
 				if (id === 'hide-containers') {
-					showAndRemoveContainer(tab, 'none');
+					showOrRemoveContainer(tab, 'none');
 				} else if (id === 'show-containers') {
-					showAndRemoveContainer(tab, 'block');
+					showOrRemoveContainer(tab, 'block');
 				} else if (id === 'get-coordinates') {
 					chrome.tabs.executeScript(tab.id, { file: './coords.js' });
 				}
@@ -19,10 +19,9 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 	}
 });
 
-function showAndRemoveContainer(currentTab, display) {
-	chrome.storage.sync.get('buttons', function (data) {
-		let buttonSelectors = data.buttons;
-		for (let selector of buttonSelectors) {
+function showOrRemoveContainer(currentTab, display) {
+	chrome.storage.local.get(['buttons', 'definitions'], function (data) {
+		for (let selector of data.buttons) {
 			var selectorMatch = selector.match(/vet=\"\d+\"/g);
 			if (selectorMatch && selectorMatch.length > 0) {
 				var numMatch = selectorMatch[0].match(/\d+/g);
@@ -36,20 +35,19 @@ function showAndRemoveContainer(currentTab, display) {
 			
 			chrome.tabs.executeScript(
 				currentTab.id,
-				{ code: `var but = document.querySelector('${selector}'); if(but !== null) { but.click(); but.style.display = '${display}'; }` });
+				{ code: `var button = document.querySelector('${selector}'); if (button !== null) { button.click(); button.style.display = '${display}'; }` });
 		}
-	});
-	chrome.storage.sync.get('elements', function (data) {
-		for (let element of data.elements) {
-			let isId = element.isId;
+
+		for (let definition of data.definitions) {
+			let isId = definition.isId;
 			if (isId) {
 				chrome.tabs.executeScript(
 					currentTab.id,
-					{ code: `var el = document.getElementById('${element['selector']}'); if(el !== null) el.style.display = '${display}';` });
+					{ code: `var element = document.getElementById('${definition['selector']}'); if (element !== null) element.style.display = '${display}';` });
 			} else {
 				chrome.tabs.executeScript(
 					currentTab.id,
-					{ code: `var el = document.getElementsByClassName('${element['selector']}'); if(el.length > 0) el[0].style.display = '${display}';` });
+					{ code: `var element = document.getElementsByClassName('${definition['selector']}'); if (element.length > 0) element[0].style.display = '${display}';` });
 			}
 		}
 	});

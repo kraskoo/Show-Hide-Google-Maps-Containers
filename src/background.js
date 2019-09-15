@@ -1,14 +1,14 @@
 'use strict';
 
 chrome.runtime.onInstalled.addListener(function () {
-  chrome.storage.sync.set({
+  chrome.storage.local.set({
     buttons: [
       'button[vet="10761"]',
       'button[jstcache="155"]',
       'button[jstcache="134"]',
       'button[vet="16735"]'
     ],
-    elements: [
+    definitions: [
       {
         selector: 'watermark',
         isId: true
