@@ -26,6 +26,14 @@ chrome.runtime.onInstalled.addListener(function () {
         isId: true
       },
       {
+        selector: 'titlecard',
+        isId: true
+      },
+      {
+        selector: 'image-header',
+        isId: true
+      },
+      {
         selector: 'widget-homescreen',
         isId: false
       },
