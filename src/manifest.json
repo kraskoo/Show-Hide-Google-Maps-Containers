@@ -1,6 +1,6 @@
 {
   "name": "Show/Hide Google Maps Containers",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Show/Hide all additional containers in Google Maps",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
